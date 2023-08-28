@@ -1,0 +1,52 @@
+
+# import pyowm                       
+
+# owm = pyowm.OWM('ТОКЕН')               
+
+# reg = owm.city_id_registry()           
+# mgr = owm.weather_manager()        
+
+
+# orig_city = 'Moscow'
+# c_country = 'RU'
+# list_of_locations = reg.locations_for(orig_city, country=c_country) 
+# print(list_of_locations)              # список локаций
+# print(list_of_locations[0])           # выбираем город из списка
+
+# moscow = list_of_locations[0]
+# lat_m = moscow.lat                    # широта 55.75222
+# lon_m = moscow.lon                    # долгота 37.615555
+
+
+                                                  # запрос погоды
+# one_call = mgr.one_call(lat=lat_m, lon=lon_m, units='metric')                  # единицы измерения метрические
+# print('Погода сейчас: ')
+
+                                                  # описание текущей погоды
+# print(one_call.current.detailed_status)
+                                          #значение текущей температуры
+# temp_m = one_call.current.temperature().get('temp')
+# print(temp_m)
+
+
+#спрашиваем день, от 1 до 7
+# days = int(input(('Выберите прогноз на +(1-7) дней: ')))
+
+# print(one_call.forecast_daily[days].detailed_status)
+# #
+# print('Темература утром: ', one_call.forecast_daily[days].temperature('celsius').get('feels_like_morn', None))
+
+ОШИБКИ, КОТОРЫЕ БЬЁТ:
+Traceback (most recent call last):
+  File "G:\ПРОЕКТЫ\1.21 Lesson_20.py", line 142, in <module>
+    reg = owm.city_id_registry()           #  м-д city_id_registry объекта owm
+  File "G:\ПРОЕКТЫ\venv\lib\site-packages\pyowm\owm.py", line 96, in city_id_registry
+    return cityidregistry.CityIDRegistry.get_instance()
+  File "G:\ПРОЕКТЫ\venv\lib\site-packages\pyowm\commons\cityidregistry.py", line 29, in get_instance
+    return CityIDRegistry(CITY_ID_DB_PATH)
+  File "G:\ПРОЕКТЫ\venv\lib\site-packages\pyowm\commons\cityidregistry.py", line 21, in __init__
+    self.connection = self.__decompress_db_to_memory(sqlite_db_path)
+  File "G:\ПРОЕКТЫ\venv\lib\site-packages\pyowm\commons\cityidregistry.py", line 52, in __decompress_db_to_memory
+    src_conn = sqlite3.connect(tmpf_name)
+sqlite3.OperationalError: unable to open database file
+
